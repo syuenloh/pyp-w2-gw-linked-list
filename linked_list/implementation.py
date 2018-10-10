@@ -1,3 +1,6 @@
+from .interface import AbstractLinkedList
+from .node import Node
+
 class LinkedList():
     """
     Implementation of an AbstractLinkedList inteface.
