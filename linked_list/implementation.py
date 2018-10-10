@@ -1,4 +1,4 @@
-class LinkedList():
+class LinkedList(Node):
     """
     Implementation of an AbstractLinkedList inteface.
     """
@@ -8,28 +8,51 @@ class LinkedList():
         self.start = None
         self.end = None
         if elements:
-            self.start=Node(elements[0],next=Node(elements[1]))
-            self.end=Node(elements[-1])
             for elem in elements:
                 self.append(elem)
+        else:
+            elements=[]
 
     def __str__(self):
-        return str(self.elements)
+        if self.elements:
+            return str(self.elements)
+        else:
+            return "[]"
 
     def __len__(self):
-        return len(self.elements)
+        if self.elements:
+            return len(self.elements)
+        else:
+            return 0
 
     def __iter__(self):
         pass
 
     def __getitem__(self, index):
-        return self.elements[index]
+        if self.elements:
+            return self.elements[index]
+        else:
+            raise IndexError
 
     def __add__(self, other):
-        return self.elements.append(other.elements)
+        if self.elements is not None and other.elements is not None:
+            for elem in reversed(self.elements):
+                other.elements=[elem]+other.elements
+            return other
+        elif other.elements is None:
+            return self
+        else:
+            return other
 
     def __iadd__(self, other):
-        return self.elements.append(other.elements)
+        if self.elements is not None and other.elements is not None:
+            for elem in reversed(self.elements):
+                other.elements=[elem]+other.elements
+            return other
+        elif other.elements is None:
+            return self
+        else:
+            return other
 
     def __eq__(self, other):
         if self is other:
@@ -37,7 +60,7 @@ class LinkedList():
         elif type(self) != type(other):
             return False
         else:
-            return self.elements==other.elements
+            self.elements==other.elements
         
     def append(self, elem):
         new_node = Node(elem)
@@ -51,7 +74,10 @@ class LinkedList():
             self.elements.append(elem)
 
     def count(self):
-        return len(self.elements)
+        if self.elements:
+            return len(self.elements)
+        else:
+            return 0
     
     def __repr__(self):
         return "LinkedList({})".format(self.elements)
