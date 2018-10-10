@@ -1,4 +1,4 @@
-class LinkedList(Node):
+class LinkedList():
     """
     Implementation of an AbstractLinkedList inteface.
     """

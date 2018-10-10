@@ -3,7 +3,6 @@ import unittest
 
 from linked_list import Node, LinkedList
 
-
 class LinkedListTestCase(unittest.TestCase):
 
     def test_not_equal(self):
