@@ -63,8 +63,8 @@ class LinkedList():
         elif type(self) != type(other):
             return False
         else:
-            self.elements==other.elements
-        
+            return self.elements==other.elements
+
     def append(self, elem):
         new_node = Node(elem)
         if self.start is None:
@@ -81,12 +81,15 @@ class LinkedList():
             return len(self.elements)
         else:
             return 0
-    
+
     def __repr__(self):
         return "LinkedList({})".format(self.elements)
 
     def pop(self, index=None):
-        if index==None:
-            return self.elements.pop()
+        if self.elements:
+            if index==None:
+                return self.elements.pop()
+            else:
+                return self.elements.pop(index)
         else:
-            return self.elements.pop(index)
+            raise IndexError
